@@ -21,7 +21,6 @@ const RootLayout = ({ children }: RootLayoutProps): JSX.Element => {
       </head>
       <body>
         <Header />
-        <div style={{ height: "2000px"}}></div>
         {children}
       </body>
     </html>

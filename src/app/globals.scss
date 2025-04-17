@@ -4,7 +4,7 @@
 
 layout = [
   최대 width : 1100px,
-  safe area : mobile: 15px, tablet: 20px, desktop: 20px
+  safe area : mobile: 10px, tablet: 20px, desktop: 20px
 ]
 
 font = [
@@ -30,4 +30,13 @@ font = [
 html {
   min-height: 100vh;
   background-color: $back-ground-color--white;
+
+  body {
+    margin: 0;
+    padding-top: 80px; // Header 컴포넌트의 fixed 영역 확보
+
+    @include tablet {
+      padding-top: 145px;
+    }
+  }
 }
