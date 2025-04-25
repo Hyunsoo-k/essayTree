@@ -11,13 +11,6 @@ const HeroSection = (): JSX.Element => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (h1TagRef.current) {
-        h1TagRef.current.classList.remove(styles["before"]);
-        h1TagRef.current.classList.add(styles["after"]);
-      }
-    }, 800);
-
-    setTimeout(() => {
       if (pTagRef.current) {
         pTagRef.current.classList.remove(styles["before"]);
         pTagRef.current.classList.add(styles["after"]);
@@ -27,21 +20,20 @@ const HeroSection = (): JSX.Element => {
   }, []);
 
   return(
-    <section className={styles["component-container"]}>
+    <section
+      className={styles["component-container"]}
+      style={{
+        backgroundImage: `url(/image/sunsetImage.jpg)`
+      }}
+    >
       <div className={styles["content"]}>
-        <h1
-          ref={h1TagRef}
-          className={styles["before"]}
-        >
+        <h1 ref={h1TagRef}>
           Open Magazine
+          <img src="/image/circleText.svg" />
         </h1>
-        <p
-          ref={pTagRef}
-          className={styles["before"]}
-        >
-          누군가의 작은 생각이 누군가에게 큰 울림이 되는 공간입니다.
-          당신의 경험, 생각, 기억을 에세이로 남겨보세요.
-          모두가 함께 읽고 공감합니다.
+        <p ref={pTagRef}>
+          누군가의 작은 생각이<br />
+          누군가에게 큰 울림이 되는 공간.
         </p>
       </div>
     </section>
