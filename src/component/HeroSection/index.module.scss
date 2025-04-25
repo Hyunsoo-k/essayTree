@@ -4,117 +4,101 @@
   position: relative;
   width: 100%;
   margin: 0 auto;
-  padding: 100px 10px 10px;
+  padding: 100px 10px 50px;
+  background-position: center;
+  background-attachment: fixed;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
+  }
 
   @include tablet {
-    max-width: 1100px;
-    padding: 150px 20px 50px;
+    padding: 150px 20px 100px;
   }
 
   @include desktop {
+    padding: 150px 20px 150px;
   }
 
   .content {
     position: relative;
-    width: 100%;
-    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 300px;
+    height: 150px;
     margin: 0 auto;
 
     @include tablet {
-      height: 200px;
+      flex-direction: row;
+      width: 580px;
+      height: auto;
     }
-  
+
     @include desktop {
+      width: 720px;
     }
 
     h1 {
-      position: absolute;
+      position: relative;
       z-index: 20;
       display: inline-block;
       margin: 0;
       white-space: nowrap;
-      font-size: 40px;
+      font-size: 35px;
       font-family: "Charmonman", cursive;
-      transition: left 1s ease-out, opacity 1.5s ease-out;
+      color: #FFF;
       
       @include tablet {
+        left: 0;
         font-size: 50px;
       }
   
       @include desktop {
+        left: 5%;
         font-size: 60px;
       }
     }
-  
-    h1.before {
-      left: -70px;
-      opacity: 0;
 
-      @include tablet {
-        left: 0;
-      }
-
-      @include desktop {
-        left: 5%;
-      }
-    }
-  
-    h1.after {
-      left: 0;
-      opacity: 1;
-
-      @include tablet {
-        left: 10%;
-      }
-
-      @include desktop {
-        left: 15%;
-      }
-    }
-  
-    p {
+    img {
       position: absolute;
-      z-index: 10;
-      left: 20px;
-      margin: 0;
-      line-height: 26px;
-      font-size: 13px;
-      color: $font-color--black;
-      transition: top 1.2s ease-out, opacity 1.3s ease-out;
-  
+      top: -30px;
+      left: 190px;
+      width: 90px;
+      height: 90px;
+
       @include tablet {
-        left: auto;
-        right: 5%;
-        max-width: calc(100% - 10% - 342px - 10%);
-        line-height: 24px;
+        left: 290px;
+        width: 110px;
+        height: 110px;
       }
-  
-      @include desktop {
-        max-width: calc(100% - 15% - 411px - 10%);
-        font-size: 14.5px;
+      
+      @include desktop{
+        left: 370px;
       }
     }
-  
-    p.before {
-      top: 50px;
-      opacity: 0;
+  }
 
-      @include tablet {
-        top: -20px;
-      }
+  p {
+    z-index: 10;
+    margin: 0;
+    line-height: 26px;
+    font-size: 13px;
+    color: #FFF;
+
+    @include tablet {
+      position: relative;
+      top: 20px;
+      line-height: 24px;
     }
-  
-    p.after {
-      top: 100px;
-      opacity: 1;
 
-      @include tablet {
-        top: 20px;
-      }
-
-      @include desktop {
-        top: 30px;
-      }
+    @include desktop {
+      top: 35px;
+      font-size: 14.5px;
     }
   }
 }
