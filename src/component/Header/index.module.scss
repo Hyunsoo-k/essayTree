@@ -38,7 +38,7 @@
           letter-spacing: 0.3px;
           font-size: 13px;
           font-weight: 400;
-          color: $font-color--gray;
+          color: $font-color--dark-gray;
         }
       }
     }
@@ -107,7 +107,7 @@
           letter-spacing: 0.3px;
           font-size: 15px;
           font-weight: 400;
-          color: $font-color--gray;
+          color: $font-color--dark-gray;
 
           @include tablet {
             font-size: 14px;
@@ -171,7 +171,7 @@
         letter-spacing: 0.5px;
         font-size: 15px;
         font-weight: 400;
-        color: $font-color--gray;
+        color: $font-color--dark-gray;
       }
     }
   }
