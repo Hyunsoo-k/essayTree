@@ -64,8 +64,6 @@ const EssayThumbnailCard = ({ data, index }: PropsType): JSX.Element => {
   //     <EssayThumbnailCardSkeleton index={index} />
   //   );
   // };
-
-  console.log(viewport)
   
   return (
     <div
