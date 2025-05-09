@@ -119,8 +119,11 @@ export default function Home(): JSX.Element {
             ref={eaasyThumbnailCardMainBoxRef}
             className={styles["eaasy-thumbnail-card-main-box"]}
           >
-            {mockData.slice(0, 9).map((data: any) => (
-              <EssayThumbnailCardMain data={data} />
+            {mockData.slice(0, 9).map((data: any, index: number) => (
+              <EssayThumbnailCardMain
+                key={index}
+                data={data}
+              />
             ))}
           </div>
         </div>
