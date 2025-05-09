@@ -1,56 +1,193 @@
-import HeroSection from "@/component/HeroSection";
+"use client";
 
-import EssayThumbnailCard from "@/component/EssayThumbnailCard";
-import EssayThumbnailCardSkeleton from "@/component/Skeleton/EssayThumbnailCardSkeleton";
+import { MouseEvent, useRef, useState } from "react";
+
+import { PiArrowLeftThin } from "react-icons/pi";
+import { PiArrowRightThin } from "react-icons/pi";
+
+import useViewportObserver from "@/hook/useViewportObserver";
+import useViewportStore from "@/store/useViewportStore";
+import { mockData } from "@/mockData/essayThumbnailMocakData";
+import HeroSection from "@/component/HeroSection";
+import EssayThumbnailCardMain from "@/component/EssayThumbnailCardMain";
+import EssayThumbnailCardVertical from "@/component/EssayThumbnailCardVertical";
 
 import styles from "./page.module.scss";
 
+type SelectedCategoryStateType =
+  | "All"
+  | "일상"
+  | "음식"
+  | "예술"
+  | "여행"
+  | "자기개발";
+
 export default function Home(): JSX.Element {
-  const mockData = [
-    {
-      backGroundImageSrc: "/image/mockImage.jpg",
-      title: "대통령은 내우·외환·천재·지변 또는 중대한 재정·경제상의 위기에 있어서 국가의 안전보장 또는 공공의 안녕질서를 유지하기 위하여 긴급한 조치가 필요하고 국회의 집회를 기다릴 여유가 없을 때에 한하여 최소한으로 필요한 재정·경제상의 처분을 하거나 이에 관하여 법률의 효력을 가지는 명령을 발할 수 있다",
-      content:
-        "대통령은 내우·외환·천재·지변 또는 중대한 재정·경제상의 위기에 있어서 국가의 안전보장 또는 공공의 안녕질서를 유지하기 위하여 긴급한 조치가 필요하고 국회의 집회를 기다릴 여유가 없을 때에 한하여 최소한으로 필요한 재정·경제상의 처분을 하거나 이에 관하여 법률의 효력을 가지는 명령을 발할 수 있다 대통령은 내우·외환·천재·지변 또는 중대한 재정·경제상의 위기에 있어서 국가의 안전보장 또는 공공의 안녕질서를 유지하기 위하여 긴급한 조치가 필요하고 국회의 집회를 기다릴 여유가 없을 때에 한하여 최소한으로 필요한 재정·경제상의 처분을 하거나 이에 관하여 법률의 효력을 가지는 명령을 발할 수 있다",
-      subject: "음식",
-      createdAt: "8월 6일 2024년",
-    },
-    {
-      backGroundImageSrc: "/image/mockImage.jpg",
-      title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Lorem ipsum dolor sit amet",
-      content:
-        "eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Volutpat odio facilisis mauris sit amet massa. Commodo odio aenean sed adipiscing diam donec adipiscing tristique. Mi eget mauris pharetra et. Non tellus orci ac auctor augue. Elit at imperdiet dui accumsan sit. Ornare arcu dui vivamus arcu felis. Egestas integer eget al",
-      subject: "음식",
-      createdAt: "8월 6일 2024년",
-    },
-    {
-      backGroundImageSrc: "/image/mockImage.jpg",
-      title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do Lorem ipsum dolor sit amet",
-      content:
-        "eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Volutpat odio facilisis mauris sit amet massa. Commodo odio aenean sed adipiscing diam donec adipiscing tristique. Mi eget mauris pharetra et. Non tellus orci ac auctor augue. Elit at imperdiet dui accumsan sit. Ornare arcu dui vivamus arcu felis. Egestas integer eget al",
-      subject: "음식",
-      createdAt: "8월 6일 2024년",
-    },
-    {
-      backGroundImageSrc: "/image/mockImage.jpg",
-      title: "Lorem ipsum dolor sit amet",
-      content:
-        "eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit. Volutpat odio facilisis mauris sit amet massa. Commodo odio aenean sed adipiscing diam donec adipiscing tristique. Mi eget mauris pharetra et. Non tellus orci ac auctor augue. Elit at imperdiet dui accumsan sit. Ornare arcu dui vivamus arcu felis. Egestas integer eget al",
-      subject: "음식",
-      createdAt: "8월 6일 2024년",
-    },
-  ];
+  useViewportObserver();
+  const { viewport } = useViewportStore();
+
+  /**
+   * eaasy-thumbnail-card-main-section
+   */
+
+  const isAnimating = useRef<boolean>(false);
+  const eaasyThumbnailCardMainBoxWrapperRef = useRef<HTMLDivElement | null>(null);
+  const eaasyThumbnailCardMainBoxRef = useRef<HTMLDivElement | null>(null);
+
+  const handleClickLeftArrow = (): void => {
+    const wrapperElement = eaasyThumbnailCardMainBoxWrapperRef.current;
+    const boxElement = eaasyThumbnailCardMainBoxRef.current
+
+    if (
+      !wrapperElement ||
+      !boxElement ||
+      isAnimating.current
+    ) {
+      return;
+    };
+
+    const firstChildElement = boxElement.firstElementChild as HTMLElement;
+    const scrollDistance = firstChildElement.getBoundingClientRect().width;
+    
+    wrapperElement.scrollBy({
+      left: -scrollDistance,
+      behavior: 'smooth',
+    });
+
+    isAnimating.current = true;
+
+    setTimeout(() => {
+      isAnimating.current = false;
+    }, 500);
+  };
+
+  const handleClickRightArrow = (): void => {
+    const wrapperElement = eaasyThumbnailCardMainBoxWrapperRef.current;
+    const boxElement = eaasyThumbnailCardMainBoxRef.current
+
+    if (
+      !wrapperElement ||
+      !boxElement ||
+      isAnimating.current
+    ) {
+      return;
+    };
+
+    const firstChildElement = boxElement.firstElementChild as HTMLElement;
+    const scrollDistance = firstChildElement.getBoundingClientRect().width;
+    
+    wrapperElement.scrollBy({
+      left: scrollDistance,
+      behavior: 'smooth',
+    });
+
+    isAnimating.current = true;
+
+    setTimeout(() => {
+      isAnimating.current = false;
+    }, 500);
+  };
+
+  /**
+   * eaasy-thumbnail-card-vertical-section
+   */
+
+  const [selectedCategory, setSelectedCategory] = useState<SelectedCategoryStateType>("All");
+
+  const handleClickCategory = (e: MouseEvent<HTMLLIElement>): void => {
+    const target = e.currentTarget;
+
+    target.textContent
+      && setSelectedCategory(target.textContent as SelectedCategoryStateType);
+  };
 
   return (
     <main className={styles["page-component"]}>
       <HeroSection />
-      <div className={styles["eaasy-thumbnail-card-box"]}>
-        {mockData.map((data: any, index: number) => (
-          // <EssayThumbnailCardSkeleton key={index} index={index} />
-          <EssayThumbnailCard key={index} data={data} index={index} />
-        ))}
-      </div>
+      <section className={styles["eaasy-thumbnail-card-main-section"]}>
+        <div className={styles["left-arrow-wrapper"]}>
+          <PiArrowLeftThin
+            onClick={handleClickLeftArrow}
+            size={viewport === "mobile" ? 40 : 70}
+          />
+        </div>
+        <div
+          ref={eaasyThumbnailCardMainBoxWrapperRef}
+          className={styles["eaasy-thumbnail-card-main-box-wrapper"]}
+        >
+          <div
+            ref={eaasyThumbnailCardMainBoxRef}
+            className={styles["eaasy-thumbnail-card-main-box"]}
+          >
+            {mockData.slice(0, 9).map((data: any) => (
+              <EssayThumbnailCardMain data={data} />
+            ))}
+          </div>
+        </div>
+        <div className={styles["right-arrow-wrapper"]}>
+          <PiArrowRightThin
+            onClick={handleClickRightArrow}
+            size={viewport === "mobile" ? 40 : 70}
+          />
+        </div>
+      </section>
+      <div className={styles["boundary-line"]}></div>
+      <section className={styles["essay-thumbnail-card-vertical-section"]}>
+        <div className={styles["top"]}>
+          <h2>Articles</h2>
+          <ul>
+            <li
+              onClick={handleClickCategory}
+              className={`${selectedCategory === "All" ? styles["--selected"] : ""}`}
+            >
+              All
+            </li>
+            <li
+              onClick={handleClickCategory}
+              className={`${selectedCategory === "일상" ? styles["--selected"] : ""}`}
+            >
+              일상
+            </li>
+            <li
+              onClick={handleClickCategory}
+              className={`${selectedCategory === "음식" ? styles["--selected"] : ""}`}
+            >
+              음식
+            </li>
+            <li
+              onClick={handleClickCategory}
+              className={`${selectedCategory === "예술" ? styles["--selected"] : ""}`}
+            >
+              예술
+            </li>
+            <li
+              onClick={handleClickCategory}
+              className={`${selectedCategory === "여행" ? styles["--selected"] : ""}`}
+            >
+              여행
+            </li>
+            <li
+              onClick={handleClickCategory}
+              className={`${selectedCategory === "자기개발" ? styles["--selected"] : ""}`}
+            >
+              자기개발
+            </li>
+          </ul>
+        </div>
+        <div className={styles["article-box"]}>
+          {mockData.map((data: any, index: number) => (
+            <EssayThumbnailCardVertical
+              key={index}
+              data={data}
+            />
+          ))}
+        </div>
+        <button type="button">
+          View more
+          <PiArrowRightThin size={25} />
+        </button>
+      </section>
       <div className={styles["boundary-line"]}></div>
     </main>
   );
-}
+};

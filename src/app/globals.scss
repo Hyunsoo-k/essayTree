@@ -1,28 +1,5 @@
 @use "@/style/_variables" as *;
 
-/*
-
-layout = [
-  최대 width : 1100px,
-  safe area : mobile: 10px, tablet: 20px, desktop: 20px
-]
-
-font = [
-  {
-    font-family: "Roboto Condensed", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: <weight>;
-    font-style: normal;
-  },
-  {
-    font-family: "Charmonman", cursive;
-    font-weight: 400;
-    font-style: normal;
-  }
-]
- 
-*/
-
 * {
   box-sizing: border-box;
 }
