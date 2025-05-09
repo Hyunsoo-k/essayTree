@@ -43,14 +43,10 @@ const Header = ():JSX.Element => {
       const targetNode = e.target as Node;
 
       if (hamburgerWrapperRef.current?.contains(targetNode)) {
-        console.log("contains hamburgerRef.");
-
         return;
       };
 
       if (!dropdownRef.current?.contains(targetNode)) {
-        console.log("contains dropdownRef.");
-
         setIsDropdownOpen(false);
       };
     };
