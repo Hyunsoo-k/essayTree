@@ -1,0 +1,71 @@
+@use "@/style/_variables" as *;
+
+.component-container {
+  width: 100%;
+  padding: 70px #{$safe-area--mobile}px 20px;
+  background-color: #614634;
+
+  @include tablet {
+    padding: 60px #{$safe-area--tablet}px 20px;
+  }
+
+  .item-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(80%, 340px);
+    margin: 0 auto;
+
+    h1 {
+      position: relative;
+      margin: 0 0 40px;
+      letter-spacing: 1px;
+      font-size: 23px;
+      font-family: "Charmonman", cursive;
+      color: $font-color--bright-gray;
+  
+      &:hover {
+        cursor: pointer;
+      }
+
+      @include tablet {
+        font-size: 28px;
+      }
+    }
+  
+    ul {
+      list-style-type: none;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      margin: 0 auto 60px;
+      padding: 0;
+      font-size: 11px;
+      font-weight: 300;
+      color: #FFF;
+  
+      li:hover {
+        cursor: pointer;
+      }
+
+      @include tablet {
+        letter-spacing: 1px;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .bottom {
+    padding-top: 10px;
+    border-top: 1px solid $border-color--gray;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-family: "Charmonman", cursive;
+    color: $font-color--bright-gray;
+
+    @include tablet {
+      margin-bottom: 30px;
+    }
+  }
+}
