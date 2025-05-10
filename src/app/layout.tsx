@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import "./globals.scss";
 
 const Header = dynamic(() => import("@/component/Header"), { ssr: false });
+const Footer = dynamic(() => import ("@/component/Footer"), { ssr: false });
 
 type RootLayoutProps = {
   children: ReactNode;
@@ -22,6 +23,7 @@ const RootLayout = ({ children }: RootLayoutProps): JSX.Element => {
       <body>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
