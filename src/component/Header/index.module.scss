@@ -15,41 +15,6 @@
   color: $font-color--black;
   transition: box-shadow 0.3s ease;
 
-  .top {
-    width: 100%;
-    max-width: 1100px;
-    padding: 10px;
-
-    @include tablet {
-      padding: 10px 20px;
-    }
-
-    ul {
-      display: flex;
-      justify-content: space-between;
-      width: 120px;
-      padding: 0;
-      margin: 0 0 0 auto;
-      list-style-type: none;
-
-      li {
-        a {
-          text-decoration: none;
-          letter-spacing: 0.3px;
-          font-size: 13px;
-          font-weight: 400;
-          color: $font-color--dark-gray;
-        }
-      }
-    }
-  }
-
-  .boundary-line {
-    width: 100%;
-    height: 1px;
-    background-color: $border-color--gray;
-  }
-
   .main {
     position: relative;
     z-index: 100;
@@ -75,33 +40,19 @@
       }
     }
 
-    .interection-box--mobile {
-      display: flex;
-      justify-content: space-between;
-      width: 100px;
+    > nav {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40%;
 
-      svg:nth-of-type(1) {
-        position: relative;
-        top: 1px;
-      }
-    }
-  
-    .navigation-bar {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      justify-content: space-between;
-      padding: 0;
-      width: 40%;
-      margin: 0;
-      list-style-type: none;
+      ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        padding: 0;
 
-      @include tablet {
-        width: 35%;
-      }
-  
-      li {
         a {
           text-decoration: none;
           letter-spacing: 0.3px;
@@ -119,76 +70,58 @@
         }
       }
     }
-  
-    .interection-box--tablet {
+
+    .icon-box {
+      list-style-type: none;
+      position: relative;
       display: flex;
       align-items: center;
-      gap: 15px;
-  
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+
       svg:hover {
         cursor: pointer;
       }
-  
-      button {
-        width: 110px;
-        height: 40px;
-        background-color: #000000;
-        border: none;
-        border-radius: 3px;
-        letter-spacing: 0.8px;
-        font-size: 15px;
-        font-weight: 600;
-        font-family: "Roboto Condensed", sans-serif;
-        color: $back-ground-color--white;
-  
-        &:hover {
-          cursor: pointer;
+
+      @include tablet {
+        gap: 7px;
+
+        svg {
+          position: relative;
+          top: 3px;
+        }
+      }
+
+      @include desktop {
+        gap: 10px;
+      }
+
+      > li {
+        > button {
+          width: 100px;
+          height: 35px;
+          background-color: #000000;
+          border: none;
+          border-radius: 3px;
+          letter-spacing: 0.8px;
+          font-size: 15px;
+          font-weight: 600;
+          font-family: "Roboto Condensed", sans-serif;
+          color: $back-ground-color--white;
+
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }
-  }
 
-  .drop-down--mobile {
-    position: absolute;
-    z-index: 90;
-    top: 0;
-    left: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-color: $back-ground-color--white;
-    list-style-type: none;
-    transition: transform 0.5s ease;
-
-    li {
-      width: 100%;
-
-      a {
-        display: inline-block;
-        width: 100%;
-        padding: 10px 15px;
-        text-decoration: none;
-        letter-spacing: 0.5px;
-        font-size: 15px;
-        font-weight: 400;
-        color: $font-color--dark-gray;
-      }
+    .profile-modal-wrapper {
+      position: absolute;
+      z-index: 100;
+      top: 80px;
+      right: 20px;
     }
   }
-
-  .drop-down--mobile.drop-down--open {
-    transform: translateY(80px);
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
-  }
-
-  .drop-down--mobile.drop-down--close {
-    transform: translateY(-164px);
-  }
-}
-
-.component-container.located-top {
-}
-
-.component-container.located-no-top {
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
 }
