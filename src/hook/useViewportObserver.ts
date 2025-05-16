@@ -1,5 +1,9 @@
 "use client";
 
+/**
+ * 뷰포트를 실시간으로 감지하여 mobile, tablet, desktop 사이즈를 할당하는 hook.
+ */
+
 import { useEffect } from "react";
 
 import useViewportStore from "@/store/useViewportStore";
@@ -9,14 +13,18 @@ const useViewportObserver = () => {
 
   useEffect(() => {
     const checkViewport = () => {
-      const width = window.innerWidth;
+      const viewportWidth = window.innerWidth;
 
       const tabletSize = 768;
       const desktopSize = 1025;
 
-      if (width < tabletSize) setViewport("mobile");
-      else if (width < desktopSize) setViewport("tablet");
-      else setViewport("desktop");
+      if (viewportWidth < tabletSize) {
+        setViewport("mobile");
+      } else if (viewportWidth < desktopSize) {
+        setViewport("tablet");
+      } else {
+        setViewport("desktop");
+      }
     };
 
     checkViewport();
