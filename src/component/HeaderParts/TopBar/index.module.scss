@@ -1,0 +1,30 @@
+@use "@/style/_variables" as *;
+
+.component-container {
+  width: 100%;
+  border-bottom: 1px solid $border-color--gray;
+
+  @include tablet {
+    padding: 10px 0;
+  }
+
+  > ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    max-width: 1100px;
+    padding: 0 #{$safe-area--tablet}px;
+    margin: 0 auto;
+    list-style-type: none;
+
+    > li {
+      > a {
+        text-decoration: none;
+        letter-spacing: 0.3px;
+        font-size: 13px;
+        font-weight: 400;
+        color: $font-color--dark-gray;
+      }
+    }
+  }
+}
