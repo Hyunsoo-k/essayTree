@@ -60,6 +60,10 @@
 
       small {
         color: $font-color--bright-gray;
+
+        @include tablet {
+          font-size: 12px;
+        }
       }
 
       .created-at {
