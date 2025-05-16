@@ -1,0 +1,38 @@
+@use "@/style/_variables" as *;
+
+.component-container {
+  list-style-type: none;
+  position: absolute;
+  z-index: 90;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: $back-ground-color--white;
+  transition: transform 0.5s ease;
+
+  > li {
+    width: 100%;
+
+    a {
+      display: inline-block;
+      width: 100%;
+      padding: 10px 15px;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      font-size: 15px;
+      font-weight: 400;
+      color: $font-color--dark-gray;
+    }
+  }
+}
+
+.component-container.--open {
+  transform: translateY(80px);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.component-container.--close {
+  transform: translateY(-164px);
+}
