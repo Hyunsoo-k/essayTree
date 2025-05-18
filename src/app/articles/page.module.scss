@@ -1,0 +1,50 @@
+@use "@/style/_variables" as *;
+
+.page-component-container {
+  width: 100%;
+  /*
+   * 카테고리를 선택하는 컴포넌트를 모바열 환경 Ui에서 뷰포트 끝까지 보이게 하기 위해서 safe존을 각각의 영역에서 설정
+   */
+
+  @include tablet {
+    max-width: #{$max-width}px;
+    margin: 0 auto;
+    padding: $safe-area--tablet;
+  }
+
+  > h1 {
+    margin: 120px 0 0;
+    text-align: center;
+    letter-spacing: 4px;
+    font-size: 40px;
+    font-family: "Charmonman", cursive;
+  }
+
+  .BoxCategoryBox-wrapper {
+    list-style-type: none;
+    margin: 50px auto 0;
+    padding: 0;
+
+    @include tablet {
+      width: 550px;
+    }
+  }
+
+  .boundary-line {
+    height: 1px;
+    margin: 50px #{$safe-area--mobile}px;
+    background-color: $border-color--gray;
+
+    @include tablet {
+      margin: 50px#{$safe-area--tablet}px;
+    }
+  }
+
+  .essay-thumbnail-card-box-wrapper {
+    padding: 0 #{$safe-area--mobile}px;
+
+    @include tablet {
+      padding: 0 #{$safe-area--tablet}px;
+    }
+  }
+}
