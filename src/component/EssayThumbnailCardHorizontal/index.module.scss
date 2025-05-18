@@ -1,0 +1,79 @@
+@use "@/style/_variables" as *;
+
+.component-container {
+  display: flex;
+  gap: 20px;
+  height: 140px;
+  padding: 20px 0;
+  border-bottom: 1px solid $border-color--gray;
+
+  @include tablet {
+    height: 180px;
+  }
+
+  .left {
+    display: flex; // information의 margin-top: auto;를 적용하기 위해 선언
+    flex-direction: column;
+    width: calc(100% - 120px); // 전체 너비에서 썸네일 이미지 width값(120px) 제외
+
+    > h3 {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      margin: 0;
+      letter-spacing: 0.5px;
+      font-size: 15px;
+      font-weight: 400;
+
+      @include tablet {
+        font-size: 18px;
+      }
+    }
+
+    > p {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      margin: 15px 0 0;
+      line-height: 1.5;
+      font-size: 12px;
+      font-weight: 350;
+      color: $font-color--dark-gray;
+
+      @include tablet {
+        font-size: 14px;
+      }
+    }
+
+    .information {
+      margin-top: auto;
+      font-size: 12px;
+      color: $font-color--bright-gray;
+
+      @include tablet {
+        font-size: 13px;
+      }
+
+      .dot {
+        margin: 0 3px;
+
+        @include tablet {
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+
+  .thumbnial-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+    @include tablet {
+      width: 120px;
+      height: 120px;
+    }
+  }
+}
