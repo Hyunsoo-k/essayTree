@@ -1,0 +1,28 @@
+@use "@/style/_variables" as *;
+
+.component-container {
+  list-style-type: none;
+  overflow-x: scroll;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 35px;
+  grid-auto-columns: 85px;
+  gap: 10px;
+  padding: 0;
+  -ms-overflow-style: none;
+
+  @include tablet {
+    overflow-x: visible;
+    grid-auto-flow: row;
+    grid-template-rows: none;
+    grid-auto-rows: 110px;
+    grid-template-columns: repeat(5, 110px);
+    gap: 1px; // 그리드 아이템의 outline끼리 만나 두꺼워지는 현상 예방.
+    width: 550px;
+    padding: 0;
+  }
+}
+
+.component-container::-webkit-scrollbar{
+  display:none;
+}
