@@ -23,8 +23,8 @@ const BoxCategoryBox = (): JSX.Element => {
   return (
     <ul className={styles["component-container"]}>
       {categoryArray.map((category: string, index: number) => (
-        <li>
-          <BoxCategory key={index} category={category} />
+        <li key={index}>
+          <BoxCategory category={category} />
         </li>
       ))}
     </ul>
