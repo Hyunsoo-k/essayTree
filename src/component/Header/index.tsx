@@ -50,7 +50,9 @@ const Header = (): JSX.Element => {
     <header ref={headerComponentRef} className={styles["component-container"]}>
       {viewport !== "mobile" && <TopBar />}
       <div className={styles["main"]}>
-        <h1>Essay tree</h1>
+        <h1>
+          <Link href="/">Essay tree</Link>
+        </h1>
         {viewport !== "mobile" && (
           <nav>
             <ul>
@@ -61,7 +63,7 @@ const Header = (): JSX.Element => {
                 <Link href="/">Guide</Link>
               </li>
               <li>
-                <Link href="/">Articles</Link>
+                <Link href="/articles">Articles</Link>
               </li>
               <li>
                 <Link href="/">Athors</Link>
