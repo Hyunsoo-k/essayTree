@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { MouseEvent, useRef, useState } from "react";
 
 import { PiArrowLeftThin } from "react-icons/pi";
@@ -13,14 +14,6 @@ import EssayThumbnailCardMain from "@/component/EssayThumbnailCardMain";
 import EssayThumbnailCardVertical from "@/component/EssayThumbnailCardVertical";
 
 import styles from "./page.module.scss";
-
-type SelectedCategoryStateType =
-  | "All"
-  | "일상"
-  | "음식"
-  | "예술"
-  | "여행"
-  | "자기개발";
 
 export default function Home(): JSX.Element {
   useViewportObserver();
@@ -88,19 +81,6 @@ export default function Home(): JSX.Element {
     }, 500);
   };
 
-  /**
-   * eaasy-thumbnail-card-vertical-section
-   */
-
-  const [selectedCategory, setSelectedCategory] = useState<SelectedCategoryStateType>("All");
-
-  const handleClickCategory = (e: MouseEvent<HTMLLIElement>): void => {
-    const target = e.currentTarget;
-
-    target.textContent
-      && setSelectedCategory(target.textContent as SelectedCategoryStateType);
-  };
-
   return (
     <main className={styles["page-component"]}>
       <HeroSection />
@@ -137,45 +117,9 @@ export default function Home(): JSX.Element {
       <div className={styles["boundary-line"]}></div>
       <section className={styles["essay-thumbnail-card-vertical-section"]}>
         <div className={styles["top"]}>
-          <h2>Articles</h2>
-          <ul>
-            <li
-              onClick={handleClickCategory}
-              className={`${selectedCategory === "All" ? styles["--selected"] : ""}`}
-            >
-              All
-            </li>
-            <li
-              onClick={handleClickCategory}
-              className={`${selectedCategory === "일상" ? styles["--selected"] : ""}`}
-            >
-              일상
-            </li>
-            <li
-              onClick={handleClickCategory}
-              className={`${selectedCategory === "음식" ? styles["--selected"] : ""}`}
-            >
-              음식
-            </li>
-            <li
-              onClick={handleClickCategory}
-              className={`${selectedCategory === "예술" ? styles["--selected"] : ""}`}
-            >
-              예술
-            </li>
-            <li
-              onClick={handleClickCategory}
-              className={`${selectedCategory === "여행" ? styles["--selected"] : ""}`}
-            >
-              여행
-            </li>
-            <li
-              onClick={handleClickCategory}
-              className={`${selectedCategory === "자기개발" ? styles["--selected"] : ""}`}
-            >
-              자기개발
-            </li>
-          </ul>
+          <h2>
+            <Link href="/articles">Articles</Link>
+          </h2>
         </div>
         <div className={styles["article-box"]}>
           {mockData.map((data: any, index: number) => (
@@ -185,10 +129,10 @@ export default function Home(): JSX.Element {
             />
           ))}
         </div>
-        <button type="button">
+        <Link href="/articles">
           View more
           <PiArrowRightThin size={25} />
-        </button>
+        </Link>
       </section>
       <div className={styles["boundary-line"]}></div>
     </main>

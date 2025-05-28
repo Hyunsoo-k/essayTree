@@ -26,13 +26,20 @@ $safe-area--mobile: 10; // 좌우 or 상하좌우 padding 값
 $safe-area--tablet: 20;
 $safe-area--desktop: 20;
 
+$header-height: 59;
+
+$footer-height--mobile: 296;
+$footer-height--tablet: 329;
+
 $back-ground-color--white: #FEFEFE;
 
 $border-color--gray: #e4e4e4;
 
-$font-color--black: #1B1B1B;
+$font-color--black: #333333;
 $font-color--dark-gray: #7e7e7e;
 $font-color--bright-gray: #b6b6b6;
+
+$mint-color: rgb(9, 204, 178);
 
 /*
   font = [

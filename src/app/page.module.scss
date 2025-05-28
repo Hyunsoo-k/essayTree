@@ -89,42 +89,21 @@
       margin: 0 auto;
       padding: 0 #{$safe-area--tablet}px;
     }
-  
-    h2 {
-      margin: 0 0 25px;
-      font-size: 30px;
-      font-weight: 600;
-      font-family: "Charmonman", cursive;
-    }
-  
-    ul {
-      overflow-x: scroll;
-      list-style-type: none;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
+
+    .top {
       display: flex;
-      gap: 15px;
-      padding: 0;
-  
-      li {
-        min-width: 70px;
-        padding: 5px 8px;
-        border: 1px solid $border-color--gray;
-        text-align: center;
-        white-space: nowrap;
-        letter-spacing: 0.5px;
-        font-size: 12px;
-        color: $font-color--black;
-  
-        &:hover {
-          cursor: pointer;
+      justify-content: space-between;
+
+      > h2 {
+        margin: 0 0 25px;
+
+        > a {
+          text-decoration: none;
+          font-size: 30px;
+          font-weight: 600;
+          font-family: "Charmonman", cursive;
+          color: #333333;
         }
-      }
-  
-      li.--selected {
-        background-color: $font-color--black;
-        border: none;
-        color: $back-ground-color--white;
       }
     }
   
@@ -147,13 +126,12 @@
       }
     }
 
-    button {
+    > a {
+      text-decoration: none;
       display: block;
+      width: 160px;
       padding: 15px 25px;
       margin: 60px auto 0;
-      background-color: inherit;
-      border: none;
-      border-radius: 20px;
       letter-spacing: 1.5px;
       font-size: 16px;
       font-family: "Roboto Condensed", sans-serif;
@@ -163,7 +141,7 @@
         cursor: pointer;
       }
 
-      svg {
+      > svg {
         position: relative;
         top: 7px;
         right: -8px;

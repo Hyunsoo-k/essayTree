@@ -1,0 +1,112 @@
+@use "@/style/_variables" as *;
+
+.page-component {
+  min-height: calc(100vh - #{$header-height}px - #{$footer-height--mobile}px);
+  padding: 0 #{$safe-area--mobile}px 20px;
+
+  @include tablet {
+    min-height: calc(100vh - #{$header-height}px - #{$footer-height--tablet}px);
+    padding: 0 #{$safe-area--tablet}px 20px;
+  }
+
+  > h2 {
+    text-align: center;
+    margin: 20px 0 0;
+    font-size: 22px;
+    font-weight: 400;
+    color: $font-color--black;
+
+    @include tablet {
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+  }
+
+  > ul {
+    list-style-type: none;
+    padding: 0;
+    
+    @include tablet {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    > li {
+      position: relative;
+      display: flex;
+      height: 100px;
+      padding: 20px 0 10px;
+      border-bottom : 1px solid $border-color--gray;
+
+      @include tablet {
+        height: 110px;
+      }
+
+      .profile-image-wrapper {
+        flex-shrink: 0;
+        position: relative;
+        width: 40px;
+        height: 40px;
+
+        @include tablet {
+          width: 60px;
+          height: 60px;
+        }
+
+        > img {
+          border-radius: 50%;
+        }
+      }
+
+      .content-wrapper {
+        flex-grow: 1;
+        padding: 0 20px;
+
+        > a {
+          text-decoration: none;
+          overflow: hidden;
+          max-width: 100%;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          margin-top: 10px;
+          letter-spacing: 0.3px;
+          font-size: 13px;
+          color: $font-color--black;
+
+          @include tablet {
+            font-size: 15px;
+          }
+        }
+      }
+
+      .created-at-wrapper {
+        flex-shrink: 0;
+
+        > small {
+          display: inline-block;
+          margin-top: 13px;
+          font-size: 10px;
+          color: $font-color--bright-gray;
+
+          @include tablet {
+            font-size: 12px;
+          }
+        }
+      }
+
+      .new-icon {
+        position: absolute;
+        top: 13px;
+        right: 0;
+        width: 14px;
+        height: 14px;
+        background-color: $mint-color;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 8.5px;
+        color: #FFF;
+      }
+    }
+  }
+}

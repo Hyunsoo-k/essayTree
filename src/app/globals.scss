@@ -10,10 +10,6 @@ html {
 
   body {
     margin: 0;
-    padding-top: 80px; // Header 컴포넌트의 fixed 영역 확보
-
-    @include tablet {
-      padding-top: 145px;
-    }
+    padding-top: 60px; // Header 컴포넌트의 fixed 영역 확보
   }
 }

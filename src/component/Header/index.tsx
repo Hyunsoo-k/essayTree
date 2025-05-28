@@ -3,15 +3,12 @@
 import Link from "next/link";
 import { useState, useRef, MouseEvent } from "react";
 import { IoSearchOutline } from "react-icons/io5";
-import { RiAccountBoxLine } from "react-icons/ri";
 import { RxHamburgerMenu } from "react-icons/rx";
 
 import useViewportObserver from "@/hook/useViewportObserver";
 import useViewportStore from "@/store/useViewportStore";
 import useHeaderShadowOnScroll from "@/hook/useHeaderShadowOnScroll";
-import TopBar from "../HeaderParts/TopBar";
-import ProfileModal from "../Modal/ProfileModal";
-import HeaderMenuDropdown from "../HeaderParts/HeaderMenuDropdown";
+import SideMenu from "../SideMenu";
 
 import styles from "./index.module.scss";
 
@@ -19,8 +16,7 @@ const Header = (): JSX.Element => {
   useViewportObserver();
   const { viewport } = useViewportStore();
 
-  const [isProfileModalOpen, setIsProfileModalOpen] = useState<boolean>(false);
-  const [isMenuDropdownOpen, setIsMenuDropdownOpen] = useState<boolean>(false);
+  const [isSideMenuOpen, setIsSideMenuOpen] = useState<boolean>(false);
 
   const headerComponentRef = useRef<HTMLElement | null>(null);
 
@@ -34,43 +30,18 @@ const Header = (): JSX.Element => {
     e.stopPropagation();
   };
 
-  const handleClickProfileIconWrapper = (e: MouseEvent<HTMLElement>): void => {
-    e.stopPropagation();
-
-    setIsProfileModalOpen((prev: boolean) => !prev);
-  };
-
   const handleClickmenuIconWrapper = (e: MouseEvent<HTMLLIElement>): void => {
     e.stopPropagation();
 
-    setIsMenuDropdownOpen((prev: boolean) => !prev);
+    setIsSideMenuOpen((prev: boolean) => !prev);
   };
 
   return (
     <header ref={headerComponentRef} className={styles["component-container"]}>
-      {viewport !== "mobile" && <TopBar />}
       <div className={styles["main"]}>
-        <h1>
-          <Link href="/">Essay tree</Link>
-        </h1>
-        {viewport !== "mobile" && (
-          <nav>
-            <ul>
-              <li>
-                <Link href="/">Notice</Link>
-              </li>
-              <li>
-                <Link href="/">Guide</Link>
-              </li>
-              <li>
-                <Link href="/articles">Articles</Link>
-              </li>
-              <li>
-                <Link href="/">Athors</Link>
-              </li>
-            </ul>
-          </nav>
-        )}
+        <div className={styles["main-banner-wrapper"]}>
+          <Link href="/">Essay Tree</Link>
+        </div>
         <ul className={styles["icon-box"]}>
           <li>
             <IoSearchOutline
@@ -80,41 +51,19 @@ const Header = (): JSX.Element => {
           </li>
           <li
             onMouseDown={handlePreventMousedownEvent}
-            onClick={handleClickProfileIconWrapper}
+            onClick={handleClickmenuIconWrapper}
           >
-            <RiAccountBoxLine
-              size={viewport === "mobile" ? 23 : 25}
-              color="#7c7c7c"
-            />
+            <RxHamburgerMenu size={25} color="#7c7c7c" />
           </li>
-          {viewport === "mobile" ? (
-            <li
-              onMouseDown={handlePreventMousedownEvent}
-              onClick={handleClickmenuIconWrapper}
-            >
-              <RxHamburgerMenu size={25} color="#7c7c7c" />
-            </li>
-          ) : (
-            <li>
-              <button type="button">Post Essay</button>
-            </li>
-          )}
         </ul>
-        {isProfileModalOpen && (
-          <div className={styles["profile-modal-wrapper"]}>
-            <ProfileModal
-              isProfileModalOpen={isProfileModalOpen}
-              setIsProfileModalOpen={setIsProfileModalOpen}
-            />
-          </div>
-        )}
       </div>
-      {viewport === "mobile" && (
-        <HeaderMenuDropdown
-          isMenuDropdownOpen={isMenuDropdownOpen}
-          setIsMenuDropdownOpen={setIsMenuDropdownOpen}
+      <div className={`${styles["side-menu-wrapper"]} ${isSideMenuOpen ? styles["--open"] : styles["--close"]}`}
+      >
+        <SideMenu
+          isSideMenuOpen={isSideMenuOpen}
+          setIsSideMenuOpen={setIsSideMenuOpen}
         />
-      )}
+      </div>
     </header>
   );
 };
