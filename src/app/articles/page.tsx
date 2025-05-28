@@ -8,6 +8,7 @@ const ArticlesPage = (): JSX.Element => {
   return (
     <main className={styles["page-component-container"]}>
       <h1>Articles</h1>
+      <small>다양한 주제의 에세이를 만나보세요</small>
       <div className={styles["BoxCategoryBox-wrapper"]}>
         <BoxCategoryBox />
       </div>
